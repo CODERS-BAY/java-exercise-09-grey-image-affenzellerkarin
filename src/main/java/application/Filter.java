@@ -18,6 +18,19 @@ public class Filter {
 	 * @return converted picture
 	 */
 	public Picture greyScaleFilter() {
+
+
+		for (int i = 1; i<picture.height(); i++) {
+			for (int j=1; j<picture.width(); j++) {
+				Color color = picture.get(i,j);
+				int red = color.getRed();
+				int blue=color.getBlue();
+				int green=color.getGreen();
+				int grey = (red+blue+green)/3;
+				Color color1 = new Color(grey, grey, grey);
+				picture.set(i,j,color1);
+			}
+		}
 		/*
 			your code here
 		*/
@@ -31,6 +44,13 @@ public class Filter {
 	 * @return converted picture
 	 */
 	public Picture revertColorFilter() {
+		for (int i = 1; i<picture.height(); i++) {
+			for (int j=1; j<picture.width(); j++) {
+				Color color = picture.get(i,j);
+				Color color1 = new Color(255-color.getRed(), 255-color.getGreen(), 255-color.getBlue());
+				picture.set(i,j,color1);
+			}
+		}
 		/*
 			your code here
 		*/
@@ -53,6 +73,22 @@ public class Filter {
 	//@formatter:on
 
 	public Picture sepiaFilter() {
+
+		for (int i = 1; i<picture.height(); i++) {
+			for (int j=1; j<picture.width(); j++) {
+				Color color = picture.get(i,j);
+				int red = color.getRed();
+				int blue=color.getBlue();
+				int green=color.getGreen();
+				double sepiared=red*0.393+green*0.769+blue*0.189;
+				double sepiagreen=red*0.349+green * 0.686 + blue * 0.168;
+				double sepiablue=red * 0.292 + green * 0.534 + blue * 0.131;
+
+
+				Color color1 = new Color((int)(Math.min(sepiared, 255)), (int)(Math.min(sepiagreen, 255)), (int)(Math.min(sepiablue, 255)));
+				picture.set(i,j,color1);
+			}
+		}
 		/*
 			your code here
 		*/
